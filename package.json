@@ -1,0 +1,28 @@
+{
+  "name": "chat-socket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --progress --colors --content-base ./public --output-path ./public | webpack-dev-server --watch --content-base ./public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matikycz/chat-socket.git"
+  },
+  "author": "Mateusz Sitarczyk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matikycz/chat-socket/issues"
+  },
+  "homepage": "https://github.com/matikycz/chat-socket#readme",
+  "dependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "webpack": "^1.13.2",
+    "webpack-server": "^0.1.2"
+  }
+}
