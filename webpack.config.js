@@ -1,6 +1,6 @@
 var path = require('path')
 var config = {
-  entry: './client/index.js',
+  entry: './client/main.jsx',
 
   output: {
     path: __dirname,
@@ -19,7 +19,7 @@ var config = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          presets: ['es2015']
+          presets: ['es2015', 'react']
         }
       }
     ]
