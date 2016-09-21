@@ -5,6 +5,9 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 import Layout from './Layout/Layout.jsx'
 import Chat from './Chat/Chat.component.jsx'
 
+require('./sass/test.scss')
+
+
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path='/' component={Layout}>

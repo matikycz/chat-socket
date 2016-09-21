@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.jsx",
   "scripts": {
-    "start": "webpack --progress --colors --content-base ./public --output-path ./public | webpack-dev-server --watch --content-base ./public"
+    "start1": "webpack --progress --colors --content-base ./public --output-path ./public | webpack-dev-server --watch --content-base ./public",
+    "start": "webpack --progress --colors --watch -d --content-base ./public --output-path ./public"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "express": "^4.14.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
@@ -31,5 +33,11 @@
     "socket.io": "^1.4.8",
     "webpack": "^1.13.2",
     "webpack-server": "^0.1.2"
+  },
+  "devDependencies": {
+    "css-loader": "^0.25.0",
+    "node-sass": "^3.10.0",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1"
   }
 }
