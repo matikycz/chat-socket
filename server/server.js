@@ -14,12 +14,22 @@ app.get('/', (req, res) => {
   res.send('Hello world!')
 })
 
+let rooms = [
+  {id: 1, name: 'room'}
+]
+
 io.on('connection', socket => {
   console.log('user connected')
   socket.on('disconnect', () => {
     console.log('disconnected')
   })
-  socket.on('room', room => {
-    console.log(`joined room ${room}`)
+  socket.on('rooms', () => {
+    console.log(rooms)
+    socket.emit('rooms', rooms)
+  })
+  socket.on('room_new', room => {
+    const newRoom  = {name: room.name, id: rooms.length+1}
+    rooms = [...rooms, newRoom]
+    io.emit('room_new', newRoom)
   })
 })
