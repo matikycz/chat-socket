@@ -1,12 +1,12 @@
 import React from 'react'
 
 export default class Layout extends React.Component {
-  render() {
-    return (
-      <div>
-        layout
-        {this.props.children}
-      </div>
-    )
-  }
+    render() {
+        return (
+            <div>
+                layout
+                {this.props.children}
+            </div>
+        )
+    }
 }

@@ -1,12 +1,15 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router, Route, IndexRoute, browserHistory} from 'react-router'
+/* eslint-enable no-unused-vars */
 
 import Layout from './Layout/Layout.jsx'
 import Chat from './Chat/Chat.component.jsx'
 
-//require('./sass/test.scss')
-require('../client/sass/test.scss')
+/* eslint-disable no-undef */
+require('./sass/test.scss')
+/* eslint-enable no-undef */
 
 
 ReactDOM.render((
@@ -16,5 +19,3 @@ ReactDOM.render((
     </Route>
   </Router>
 ), document.getElementById('root'))
-
-
