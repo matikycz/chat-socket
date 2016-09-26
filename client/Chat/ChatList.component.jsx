@@ -11,9 +11,14 @@ import {loadFromStorage, saveToStorage} from '../Utils/localStorage'
 export default class ChatList extends React.Component {
     constructor(props) {
         super(props)
-
+        const chatStore = loadFromStorage('chat')
+        let nick
+        if(chatStore) {
+            nick = chatStore.nick
+        }
         this.state = {
-            rooms: []
+            rooms: [],
+            nick: nick
         }
 
         this.rowTemplate = this.rowTemplate.bind(this)
@@ -197,7 +202,7 @@ export default class ChatList extends React.Component {
                     parentTemplate={this.parentTemplate} />
                 <div className="row valign-wrapper">
                     <div className="input-field col l10 m9 s12">
-                          <input id="nick" ref="nick" type="text" onChange={this.onNickType}/>
+                          <input id="nick" ref="nick" type="text" onChange={this.onNickType} value={this.state.nick}/>
                           <label htmlFor="nick">Nick</label>
                     </div>
                     <button className={classNames("btn waves-effect waves-light col l2 m3 s12", this.activeBtn())} onClick={this.onButtonClick}>Dołącz</button>

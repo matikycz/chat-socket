@@ -30,7 +30,7 @@ io.on('connection', socket => {
     })
     socket.on('room_new', room => {
         if(rooms.filter(r => r.name === room.name).length === 0) {
-            const newRoom  = {name: room.name, id: rooms.length+1}
+            const newRoom  = {name: room.name, id: rooms.length+1, participants: []}
             rooms = [...rooms, newRoom]
             socket.emit('room_add_success', newRoom)
             io.emit('room_new', newRoom)
