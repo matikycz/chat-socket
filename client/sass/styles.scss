@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+@import "materialize.scss";
+
+
+//variables:
+$rooms-title-padding-top: 1.5vh;
+$rooms-title-size: 50.68px;
+$rooms-actions-margin: 20px;
+$room-actions-input-div-margin-top: 1rem;
+$rooms-actions-input-height: 3rem;
+$rooms-actions-input-margin-botttom: 20px;
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+#root {
+    height: 100%;
+}
+
+#root > div {
+    height: 100%;
+}
+
+main {
+  height: 100%;
+}
+
+.rooms-title {
+    padding-top: $rooms-title-padding-top;
+    margin-top: 0px;
+}
+
+.rooms {
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+
+    @media only screen and (max-width: $small-screen) {
+        width: 95%;
+    }
+
+    @media only screen and (min-width: $small-screen-up) and (max-width: $medium-screen) {
+        width: 90%;
+    }
+
+    .row {
+        .input-field {
+            padding-left: 0px;
+            @media only screen and (max-width: $small-screen) {
+                padding: 0px;
+            }
+        }
+
+        &.valign-wrapper {
+            flex-wrap: wrap;
+        }
+    }
+
+    .fixed-action-btn {
+        $px-margins: $rooms-actions-margin + $rooms-actions-input-margin-botttom;
+        $rem-height: $room-actions-input-div-margin-top + $rooms-actions-input-height;
+
+        right: 16.5%;
+        bottom: calc(#{$px-margins} + #{$rem-height} + 1rem);
+
+        @media only screen and (max-width: $small-screen) {
+            right: 5%;
+            bottom: calc(#{$px-margins} + #{$rem-height} + 3.5rem);
+        }
+
+        @media only screen and (min-width: $small-screen-up) and (max-width: $medium-screen) {
+            right: 8.5%;
+            bottom: calc(#{$px-margins} + #{$rem-height} + 1.25rem);
+        }
+    }
+}
+
+.rooms-list {
+    height: calc(100% - #{$rooms-title-padding-top} - #{$rooms-title-size}
+        - #{$rooms-actions-margin} - #{$room-actions-input-div-margin-top} - #{$rooms-actions-input-height} - #{$rooms-actions-input-margin-botttom} - 0.5px);
+
+    @media only screen and (max-width: $small-screen) {
+        $rooms-actions-button-height: 36px;
+        height: calc(100% - #{$rooms-title-padding-top} - #{$rooms-title-size}
+            - #{$rooms-actions-margin} - #{$room-actions-input-div-margin-top} - #{$rooms-actions-input-height} - #{$rooms-actions-input-margin-botttom}
+            - #{$rooms-actions-button-height});
+    }
+
+    ul {
+        height: 100%;
+        margin-bottom: 0px;
+        overflow-y: auto;
+    }
+}
+
+.toast-span {
+    display: inline-flex;
+    vertical-align: middle;
+    line-height: 1.5;
+
+    i {
+        margin-right: 4px;
+    }
+
+    .success {
+        color: #00c853;
+    }
+
+    .error {
+        color: red;
+    }
+}

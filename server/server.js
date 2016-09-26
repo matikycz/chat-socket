@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 })
 
 let rooms = [
-  {id: 1, name: 'room'}
+  {id: 1, name: 'room', participants: ['test']}
 ]
 
 io.on('connection', socket => {
@@ -26,12 +26,32 @@ io.on('connection', socket => {
         console.log('disconnected')
     })
     socket.on('rooms', () => {
-        console.log(rooms)
         socket.emit('rooms', rooms)
     })
     socket.on('room_new', room => {
-        const newRoom  = {name: room.name, id: rooms.length+1}
-        rooms = [...rooms, newRoom]
-        io.emit('room_new', newRoom)
+        if(rooms.filter(r => r.name === room.name).length === 0) {
+            const newRoom  = {name: room.name, id: rooms.length+1}
+            rooms = [...rooms, newRoom]
+            socket.emit('room_add_success', newRoom)
+            io.emit('room_new', newRoom)
+        }
+        else {
+            socket.emit('exception', 'Pokój o takiej nazwie już istnieje!')
+        }
+    })
+    socket.on('room_check_join', (id, nick) => {
+        const matchedRooms = rooms.filter(r => r.id === id)
+        if(matchedRooms.length === 1) {
+            const matchParticipants = matchedRooms[0].participants.filter(p => p === nick)
+            if(matchParticipants.length === 0) {
+                socket.emit('room_check_join', id)
+            }
+            else {
+                socket.emit('exception', 'Nick jest już zajęty w tym pokoju!')
+            }
+        }
+        else {
+            socket.emit('exception', 'Pokój nie istnieje!')
+        }
     })
 })
