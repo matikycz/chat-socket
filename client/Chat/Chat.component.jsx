@@ -49,6 +49,11 @@ export default class Chat extends React.Component {
 
     componentDidUpdate() {
         this.scrollToChatEnd()
+        // window.history.pushState({}, '', this.state.path)
+    }
+
+    componentWillUnmount() {
+        this.socket.disconnect()
     }
 
     onConnect() {

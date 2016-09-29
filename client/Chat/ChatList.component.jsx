@@ -60,6 +60,10 @@ export default class ChatList extends React.Component {
         window.onpopstate = () => this.socket.disconnect()
     }
 
+    componentWillUnmount() {
+        this.socket.disconnect()
+    }
+
     onConnect() {
         this.socket.emit('rooms')
     }
