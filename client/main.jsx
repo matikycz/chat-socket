@@ -6,6 +6,7 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 
 import Layout from './Layout/Layout.jsx'
 import ChatList from './Chat/ChatList.component.jsx'
+import Chat from './Chat/Chat.component.jsx'
 
 /* eslint-disable no-undef */
 require('./sass/styles.scss')
@@ -16,6 +17,9 @@ ReactDOM.render((
   <Router history={browserHistory}>
     <Route path='/' component={Layout}>
       <IndexRoute component={ChatList}/>
+      <Route path='room'>
+        <Route path=':id' component={Chat} />
+      </Route>
     </Route>
   </Router>
 ), document.getElementById('root'))

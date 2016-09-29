@@ -31,12 +31,12 @@ main {
   height: 100%;
 }
 
-.rooms-title {
+.rooms-title, .chat-title {
     padding-top: $rooms-title-padding-top;
     margin-top: 0px;
 }
 
-.rooms {
+.rooms, .chat {
     width: 70%;
     height: 100%;
     margin: 0 auto;
@@ -81,7 +81,7 @@ main {
     }
 }
 
-.rooms-list {
+.rooms-list, .messages-list {
     height: calc(100% - #{$rooms-title-padding-top} - #{$rooms-title-size}
         - #{$rooms-actions-margin} - #{$room-actions-input-div-margin-top} - #{$rooms-actions-input-height} - #{$rooms-actions-input-margin-botttom} - 0.5px);
 
@@ -114,5 +114,46 @@ main {
 
     .error {
         color: red;
+    }
+
+    .info {
+        color: blue;
+    }
+}
+
+.message {
+    .message-row {
+        width: 100%;
+        display: block;
+
+        .message-user {
+            float: left;
+            font-size: 0.9rem;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .message-time {
+            float: right;
+            font-size: 0.8rem;
+        }
+    }
+
+    .message-text {
+        clear: both;
+        display: block;
+        word-wrap:break-word;
+    }
+
+    &.even {
+        background-color: #eceff1;
+    }
+
+    &.odd {
+        background-color: #cfd8dc;
+    }
+
+    &.mine {
+        background-color: #fff3e0;
     }
 }

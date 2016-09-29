@@ -29,6 +29,7 @@ export default class ChatList extends React.Component {
         this.onConnect = this.onConnect.bind(this)
         this.onRooms = this.onRooms.bind(this)
         this.onNewRoom = this.onNewRoom.bind(this)
+        this.onRoomDeleted = this.onRoomDeleted.bind(this)
         this.onJoin = this.onJoin.bind(this)
 
         this.newRoom = this.newRoom.bind(this)
@@ -43,13 +44,20 @@ export default class ChatList extends React.Component {
         $('.modal-trigger').leanModal({ready: () => {ReactDOM.findDOMNode(this.refs.roomName).focus()}})
         /* eslint-enable no-undef */
 
+        if(this.state.nick !== '') {
+            setTimeout(() => ReactDOM.findDOMNode(this.refs.nick).focus(), 0)
+        }
+
         this.socket = io('http://localhost:3000/')
         this.socket.on('connect', this.onConnect)
         this.socket.on('rooms', this.onRooms)
         this.socket.on('room_new', this.onNewRoom)
+        this.socket.on('room_deleted', this.onRoomDeleted)
         this.socket.on('room_add_success', this.onRoomAddSuccess)
         this.socket.on('room_check_join', this.onJoin)
         this.socket.on('exception', this.onException)
+
+        window.onpopstate = () => this.socket.disconnect()
     }
 
     onConnect() {
@@ -70,6 +78,16 @@ export default class ChatList extends React.Component {
             rooms: [
                 ...rooms,
                 room
+            ]
+        })
+    }
+
+    onRoomDeleted(room) {
+        const rooms = this.state.rooms.filter(r => r.id !== room.id)
+        this.setState({
+            ...this.state,
+            rooms: [
+                ...rooms
             ]
         })
     }
